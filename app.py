@@ -205,3 +205,11 @@ def lab1_405():
                <h1>Ошибка 405</h1>
             </body>
         </html>""", 405
+
+@app.route('/lab1/500')
+def lab1_500():
+    return 200/0
+
+@app.errorhandler(500)
+def server_err(err):
+    return 'Ошибка сервера! Сервер временно не отвечает'
