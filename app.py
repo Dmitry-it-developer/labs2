@@ -38,6 +38,23 @@ def lab1():
                 <p>Flask — фреймворк для создания веб-приложений на языке программирования Python, использующий набор инструментов 
                 Werkzeug, а также шаблонизатор Jinja2. Относится к категории так называемых микрофреймворков — минималистичных каркасов
                 веб-приложений, сознательно предоставляющих лишь самые базовые возможности. <a href='/'>Главное меню</a></p>
+                <h2>Список роутов</h2>
+                <ul>
+                    <li><a href="/lab1/web">Web</a></li>
+                    <li><a href="/lab1/author">author</a></li>
+                    <li><a href="/lab1/oak">oak</a></li>
+                    <li><a href="/lab1/counter">counter</a></li>
+                    <li><a href="/lab1/created">created</a></li>
+                    <li><a href="/lab1/info">info</a></li>
+                    <li><a href="/lab1/clearCounter">clearCounter</a></li>
+                    <li><a href="/lab1/400">400</a></li>
+                    <li><a href="/lab1/401">401</a></li>
+                    <li><a href="/lab1/402">402</a></li>
+                    <li><a href="/lab1/403">403</a></li>
+                    <li><a href="/lab1/405">405</a></li>
+                    <li><a href="/lab1/500">500</a></li>
+                    <li><a href="/lab1/my">my</a></li>
+                </ul>
 
             </main>
             <footer>
