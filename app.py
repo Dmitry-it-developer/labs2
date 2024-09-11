@@ -11,7 +11,7 @@ def start():
                <h1>web-server na flask</h1>
                <a href='/author'>author</a>
             </body>
-        </html>"""
+        </html>""", 200, {'X-Server':'sample','Content-Type': 'text/plain; charset=utf-8'}
 
 @app.route('/author')
 def author():
@@ -59,7 +59,7 @@ def counter():
 def info():
     return redirect('/author')
 
-@app.route('/lab1/created')
+@app.route('/lab1/created') 
 def created():
     return  f"""<!doctype html> 
         <html>
