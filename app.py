@@ -138,3 +138,51 @@ def clearCounter():
 @app.errorhandler(404)
 def not_found(err):
     return 'нет такой страницы', 404
+
+@app.route('/lab1/400')
+def lab1_400():
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Ошибка 400</h1>
+            </body>
+        </html>""", 400
+
+@app.route('/lab1/401')
+def lab1_401():
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Ошибка 401</h1>
+            </body>
+        </html>""", 401
+
+
+@app.route('/lab1/402')
+def lab1_402():
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Ошибка 402</h1>
+            </body>
+        </html>""", 402
+
+
+@app.route('/lab1/403')
+def lab1_403():
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Ошибка 403</h1>
+            </body>
+        </html>""", 403
+
+
+@app.route('/lab1/405')
+def lab1_405():
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Ошибка 405</h1>
+            </body>
+        </html>""", 405
