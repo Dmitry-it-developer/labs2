@@ -55,6 +55,7 @@ def counter():
         <html>
            <body>
                Сколько раз вы сюда заходили: {count}
+               <a href='/lab1/clearCounter'>Очистка счетчика</a>
             </body>
         </html>"""
 
@@ -71,6 +72,17 @@ def created():
                <div><i>что-то создано...</i></div>
             </body>
         </html>""", 201
+
+@app.route('/lab1/clearCounter')
+def clearCounter():
+    global count
+    count = 0
+    return f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Очищено успешно</h1>
+            </body>
+        </html>"""
 
 @app.errorhandler(404)
 def not_found(err):
