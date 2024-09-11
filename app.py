@@ -137,7 +137,26 @@ def clearCounter():
 
 @app.errorhandler(404)
 def not_found(err):
-    return 'нет такой страницы', 404
+    path = url_for('static', filename='404-error.jpg')
+    return '''<!doctype html> 
+        <html>
+            <head>
+            <style>
+            body {
+                background-color: black;
+                font-weight: bold;
+                color: red
+            }
+            h1 {
+                margin-left: 45%
+            }
+            </style>
+            </head>
+           <body>
+               <h1>Ошибка 404</h1>
+               <img src='''f"""{path}>
+            </body>
+        </html>""", 400
 
 @app.route('/lab1/400')
 def lab1_400():
