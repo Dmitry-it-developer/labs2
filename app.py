@@ -35,6 +35,9 @@ def oak():
 
     return f"""<!doctype html> 
         <html>
+            <head>
+            <link rel="stylesheet" href="{url_for('static', filename='lab1.css')}">
+            </head>
            <body>
                <h1>Дуб</h1>
                <img src="{path}">
