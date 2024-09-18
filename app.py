@@ -1,4 +1,4 @@
-from flask import Flask, url_for, redirect
+from flask import Flask, url_for, redirect, render_template
 
 app = Flask(__name__)
 
@@ -308,3 +308,7 @@ def add_flower(name: str):
         </html>"""
         return html_content
     return f'{name} уже есть в списке'
+
+@app.route('/lab2/example/')
+def lab2_example():
+    return render_template('example.html')
