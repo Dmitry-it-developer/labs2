@@ -284,3 +284,11 @@ def a():
 @app.route('/lab2/a/')
 def a2():
     return 'со слэшем'
+
+flower_list = ('ландыш',  'ромашка', 'лилия', 'гвоздика')
+
+@app.route('/lab2/flowers/<int:flower_id>')
+def flowers(flower_id: int):
+    if flower_id < len(flower_list):
+        return f'Цветок: {flower_list[flower_id]}'
+    return 'Такого цветка нет', 404
