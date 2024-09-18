@@ -276,4 +276,11 @@ def my():
                <img src="{url_for('static', filename='oak.jpg')}">
             </body>
         </html>""", 200, {'Content-Language': 'ru-Ru', 'X-api-key': '312fdse2drf2csaDAaw', 'X-more': 'more information'}
-        
+    
+@app.route('/lab2/a')
+def a():
+    return 'без слэша'
+
+@app.route('/lab2/a/')
+def a2():
+    return 'со слэшем'
