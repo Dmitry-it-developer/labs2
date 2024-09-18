@@ -318,3 +318,7 @@ def lab2_example():
         {'name': 'banana', 'price': 110},
         {'name': 'pineapple', 'price': 200}]
     return render_template('example.html', name=name, lab_number=lab_number, course_number=course_number, group=group, fruits=fruits)
+
+@app.route('/lab2/')
+def lab2():
+    return render_template('lab2.html')
