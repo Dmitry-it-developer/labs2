@@ -46,6 +46,7 @@ def lab1():
                     <li><a href="/lab1/counter">counter</a></li>
                     <li><a href="/lab1/created">created</a></li>
                     <li><a href="/lab1/delete">delete</a></li>
+                    <li><a href="/lab1/resource_info">resource</a></li>
                     <li><a href="/lab1/info">info</a></li>
                     <li><a href="/lab1/clearCounter">clearCounter</a></li>
                     <li><a href="/lab1/400">400</a></li>
@@ -157,13 +158,14 @@ def delete():
             </body>
         </html>""", 200
 
-@app.route('/lab1/resource') 
-def resource():
+@app.route('/lab1/resource_info') 
+def resource_info():
+    global resource
     return  f"""<!doctype html> 
         <html>
            <body>
-               <h1>{resource}</h1>
-               <a href='/lab1/created'>Создать</a>
+               <h1>{resource}</h1><br>
+               <a href='/lab1/created'>Создать</a><br>
                <a href='/lab1/delete'>Удалить</a>
             </body>
         </html>""", 200
