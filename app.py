@@ -285,10 +285,26 @@ def a():
 def a2():
     return 'со слэшем'
 
-flower_list = ('ландыш',  'ромашка', 'лилия', 'гвоздика')
+flower_list = ['ландыш',  'ромашка', 'лилия', 'гвоздика']
 
 @app.route('/lab2/flowers/<int:flower_id>')
 def flowers(flower_id: int):
     if flower_id < len(flower_list):
         return f'Цветок: {flower_list[flower_id]}'
     return 'Такого цветка нет', 404
+
+@app.route('/lab2/add_flower/<string:name>')
+def add_flower(name: str):
+    if name.lower() not in flower_list:
+        flower_list.append(name.lower())
+        html_content = f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Добавлен новый цветок</h1>
+               <p>Название новго цветка: {name}</p>
+               <p>Всего цветов: {len(flower_list)}</p>
+               <p>Полный список: {flower_list}</p>
+            </body>
+        </html>"""
+        return html_content
+    return f'{name} уже есть в списке'
