@@ -45,6 +45,7 @@ def lab1():
                     <li><a href="/lab1/oak">oak</a></li>
                     <li><a href="/lab1/counter">counter</a></li>
                     <li><a href="/lab1/created">created</a></li>
+                    <li><a href="/lab1/delete">delete</a></li>
                     <li><a href="/lab1/info">info</a></li>
                     <li><a href="/lab1/clearCounter">clearCounter</a></li>
                     <li><a href="/lab1/400">400</a></li>
@@ -128,16 +129,44 @@ def counter():
 def info():
     return redirect('/lab1/author')
 
+resource = 'Я не создан'
 
 @app.route('/lab1/created') 
 def created():
+    global resource
+    if resource == 'Я создан':
+        return 'Отказано: ресурс уже создан', 400
+    resource = 'Я создан'
     return  f"""<!doctype html> 
         <html>
            <body>
                <h1>Создано успешно</h1>
-               <div><i>что-то создано...</i></div>
             </body>
         </html>""", 201
+
+@app.route('/lab1/delete') 
+def delete():
+    global resource
+    if resource != 'Я создан':
+        return 'Отказано: ресурс еще не существует', 400
+    resource = 'Я не создан'
+    return  f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>Удалено успешно</h1>
+            </body>
+        </html>""", 200
+
+@app.route('/lab1/resource') 
+def resource():
+    return  f"""<!doctype html> 
+        <html>
+           <body>
+               <h1>{resource}</h1>
+               <a href='/lab1/created'>Создать</a>
+               <a href='/lab1/delete'>Удалить</a>
+            </body>
+        </html>""", 200
 
 
 @app.route('/lab1/clearCounter')
