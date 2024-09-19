@@ -288,13 +288,46 @@ def a2():
 flower_list = ['ландыш',  'ромашка', 'лилия', 'гвоздика']
 
 @app.route('/lab2/flowers/<int:flower_id>')
-def flowers(flower_id: int):
+def lab2_flowers_flower_id(flower_id: int):
     if flower_id < len(flower_list):
-        return f'Цветок: {flower_list[flower_id]}'
+        html_content = f'''
+        <html>
+           <body>
+               <h1>Цветок: {flower_list[flower_id]}</h1>
+               <p><a href='/lab2/flowers'>Список всех цветов</a></p>
+            </body>
+        </html>
+        '''
+        return html_content
     return 'Такого цветка нет', 404
 
+@app.route('/lab2/flowers/')
+def lab2_flowers():
+    html_content = f'''
+        <html>
+           <body>
+               <h1>Список всех цветов: {flower_list}</h1>
+            </body>
+        </html>
+        '''
+    return html_content
+
+@app.route('/lab2/clear_flowers/')
+def lab2_claer_flowers():
+    global flower_list
+    flower_list = []
+    html_content = f'''
+        <html>
+           <body>
+                <h1>Список всех цветов удален</h1>
+                <p><a href='/lab2/flowers'>Список всех цветов</a></p>
+            </body>
+        </html>
+        '''
+    return html_content
+
 @app.route('/lab2/add_flower/<string:name>')
-def add_flower(name: str):
+def lab2_add_flower_name(name: str):
     if name.lower() not in flower_list:
         flower_list.append(name.lower())
         html_content = f"""<!doctype html> 
@@ -308,6 +341,10 @@ def add_flower(name: str):
         </html>"""
         return html_content
     return f'{name} уже есть в списке'
+
+@app.route('/lab2/add_flower/')
+def lab2_add_flower():
+   return 'Вы не задали имя цветка!', 400
 
 @app.route('/lab2/example/')
 def lab2_example():
