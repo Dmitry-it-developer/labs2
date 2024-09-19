@@ -364,3 +364,15 @@ def lab2():
 def lab2_filtesr():
     phrase = 'О <b>сколько</b> <u>нам</u> <i>открытий чудных</i>...'
     return render_template('filter.html', phrase=phrase)
+
+@app.route('/lab2/calc/<int:x>/<int:y>/')
+def lab2_calc_x_y(x,y):
+    return render_template('calc.html', x=x, y=y)
+
+@app.route('/lab2/calc/')
+def lab2_calc():
+    return redirect('/lab2/calc/1/1')
+
+@app.route('/lab2/calc/<int:x>/')
+def lab2_calc_x(x):
+    return redirect(f'/lab2/calc/{x}/1')
