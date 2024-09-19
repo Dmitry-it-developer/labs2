@@ -322,3 +322,8 @@ def lab2_example():
 @app.route('/lab2/')
 def lab2():
     return render_template('lab2.html')
+
+@app.route('/lab2/filters/')
+def lab2_filtesr():
+    phrase = 'О <b>сколько</b> <u>нам</u> <i>открытий чудных</i>...'
+    return render_template('filter.html', phrase=phrase)
