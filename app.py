@@ -376,3 +376,18 @@ def lab2_calc():
 @app.route('/lab2/calc/<int:x>/')
 def lab2_calc_x(x):
     return redirect(f'/lab2/calc/{x}/1')
+
+books_list = [{'author': 'Автор1', 'title': 'Название1', 'genre': 'Роман', 'pages': '324'},
+            {'author': 'Автор2', 'title': 'Название2', 'genre': 'Поэзия', 'pages': '234'},
+            {'author': 'Автор3', 'title': 'Название3', 'genre': 'Ужасы', 'pages': '123'},
+            {'author': 'Автор4', 'title': 'Название4', 'genre': 'Фантастика', 'pages': '321'},
+            {'author': 'Автор5', 'title': 'Название5', 'genre': 'Детектив', 'pages': '231'},
+            {'author': 'Автор6', 'title': 'Название6', 'genre': 'Фентази', 'pages': '423'},
+            {'author': 'Автор7', 'title': 'Название7', 'genre': 'Роман', 'pages': '512'},
+            {'author': 'Автор8', 'title': 'Название8', 'genre': 'Фантастика', 'pages': '125'},
+            {'author': 'Автор9', 'title': 'Название9', 'genre': 'Поэзия', 'pages': '194'},
+            {'author': 'Автор10', 'title': 'Название10', 'genre': 'Ужасы', 'pages': '329'}]
+
+@app.route('/lab2/books/')
+def lab2_books():
+    return render_template('books.html', books_list=books_list)
