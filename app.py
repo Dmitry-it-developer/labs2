@@ -391,3 +391,24 @@ books_list = [{'author': 'Автор1', 'title': 'Название1', 'genre': '
 @app.route('/lab2/books/')
 def lab2_books():
     return render_template('books.html', books_list=books_list)
+
+cars_list = [{'name': 'Audi RS 6', 'img':'audi_rs_6.jpeg', 'description': 'Audi RS 6 — спортивный автомобиль выпускаемый подразделением Audi Sport GmbH'},
+            {'name': 'Audi RS 7', 'img':'audi_rs_7.webp', 'description': 'Audi RS 7 — спортивный пятидверный фастбэк класса Гран Туризмо выпускаемый подразделением Audi Sport GmbH на платформе Audi A7.'},
+            {'name': 'Audi TT', 'img': 'audi_tt.webp', 'description': 'Audi TT — компактное купе немецкой компании Audi. Выпускался с 1998 года до 2023 года в городе Дьёре, Венгрия.'},
+            {'name': 'Audi R8', 'img': 'audi_r8.webp', 'description': 'Audi R8 - среднемоторный полноприводный спортивный автомобиль, производимый немецким автопроизводителем Audi с 2007 года.'},
+            {'name': 'Audi A6', 'img': 'audi_a6.webp', 'description': 'Audi A6 — семейство спортивных автомобилей бизнес-класса, выпускающихся под маркой Audi'}]
+
+@app.route('/lab2/cars/')
+def lab2_cars():
+    cars_text = ''
+    for car in cars_list:
+        cars_text += f'<b>{car['name']}</b>.<br> {car['description']} <br> <img width="300px" src="{url_for('static', filename=car['img'])}"><br>'
+    html_content =  f"""<!doctype html> 
+        <html>
+            <head>
+            </head>
+           <body>
+               {cars_text}
+            </body>
+        </html>"""
+    return html_content
