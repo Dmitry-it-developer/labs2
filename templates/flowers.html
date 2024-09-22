@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная 2{% endblock %}
+
+{% block js %}
+<script>
+        function load_href() {
+                var val = document.querySelector('#flower_name').value;
+                document.querySelector('#add').setAttribute('href', '/lab2/add_flower/' + val)
+              }
+</script>
+{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+        <h1>Список всех цветов: </h1>
+        <ol type="1">
+                {% for f in flower_list %}  
+                <li>Название: {{ f['name'] }}. Цена: {{ f['price'] }} &#8381 <a href=/lab2/clear_flower/{{loop.index-1}}>Удалить</a></li>  
+                {% endfor %}
+        </ol>
+        <p><a href="/lab2/clear_flowers/">Удалить все цветы</a></p>
+        <p><input type="text" id="flower_name"> <a onclick=load_href() id="add" href="/lab2/add_flower/"> Добавить</a></p>
+{% endblock %}

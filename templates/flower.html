@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная 2{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+        <h1>Цветок: {{flower}}</h1>
+        <p><a href='/lab2/flowers'>Список всех цветов</a></p>
+{% endblock %}
