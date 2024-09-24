@@ -1,10 +1,12 @@
 from flask import Flask, url_for, redirect, render_template
 from lab1 import lab1
 from lab2 import lab2
+from lab3 import lab3
 
 app = Flask(__name__)
 app.register_blueprint(lab1)
 app.register_blueprint(lab2)
+app.register_blueprint(lab3)
 
 @app.route("/")
 @app.route('/index')
@@ -21,6 +23,7 @@ def index():
            <main>
                 <p><a href='/lab1' target="_blank">Лабораторная работа 1</a></p>
                 <p><a href='/lab2' target="_blank">Лабораторная работа 2</a></p>
+                <p><a href='/lab3' target="_blank">Лабораторная работа 3</a></p>
             </main>
             <footer>
                 Кимосов Дмитрий Владимирович ФБИ - 21 3 курс 2024 год

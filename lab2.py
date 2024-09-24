@@ -17,13 +17,13 @@ flower_list = [{'name':'ландыш', 'price':'200'}, {'name':'ромашка',
 def lab2_flowers_flower_id(flower_id: int):
     if flower_id < len(flower_list):
         flower = flower_list[flower_id]['name']
-        return render_template('flower.html', flower=flower)
+        return render_template('lab2/flower.html', flower=flower)
     return 'Такого цветка нет', 404
 
 
 @lab2.route('/lab2/flowers/')
 def lab2_flowers():
-    return render_template('flowers.html', flower_list=flower_list)
+    return render_template('lab2/flowers.html', flower_list=flower_list)
 
 @lab2.route('/lab2/clear_flower/<int:flower_id>')
 def lab2_clear_flower_flower_id(flower_id: int):
@@ -38,14 +38,14 @@ def lab2_clear_flower_flower_id(flower_id: int):
 def lab2_claer_flowers():
     global flower_list
     flower_list = []
-    return render_template('clear_flowers.html')
+    return render_template('lab2/clear_flowers.html')
 
 
 @lab2.route('/lab2/add_flower/<string:name>')
 def lab2_add_flower_name(name: str):
     if name.lower() not in [f['name'] for f in flower_list]:
         flower_list.lab2end({'name': name.lower(), 'price': '0'})
-        return render_template('add_flower.html', name=flower_list[-1]['name'], len_flower=len(flower_list),
+        return render_template('lab2/add_flower.html', name=flower_list[-1]['name'], len_flower=len(flower_list),
          flower_list=flower_list)
     return f'{name} уже есть в списке'
 
@@ -63,23 +63,23 @@ def lab2_example():
         {'name': 'peach', 'price': 100}, 
         {'name': 'banana', 'price': 110},
         {'name': 'pinelab2le', 'price': 200}]
-    return render_template('example.html', name=name, lab_number=lab_number, course_number=course_number, group=group, fruits=fruits)
+    return render_template('lab2/example.html', name=name, lab_number=lab_number, course_number=course_number, group=group, fruits=fruits)
 
 
 @lab2.route('/lab2/')
 def lab2_main():
-    return render_template('lab2.html')
+    return render_template('lab2/lab2.html')
 
 
 @lab2.route('/lab2/filters/')
 def lab2_filtesr():
     phrase = 'О <b>сколько</b> <u>нам</u> <i>открытий чудных</i>...'
-    return render_template('filter.html', phrase=phrase)
+    return render_template('lab2/filter.html', phrase=phrase)
 
 
 @lab2.route('/lab2/calc/<int:x>/<int:y>/')
 def lab2_calc_x_y(x,y):
-    return render_template('calc.html', x=x, y=y)
+    return render_template('lab2/calc.html', x=x, y=y)
 
 
 @lab2.route('/lab2/calc/')
@@ -104,7 +104,7 @@ books_list = [{'author': 'Автор1', 'title': 'Название1', 'genre': '
 
 @lab2.route('/lab2/books/')
 def lab2_books():
-    return render_template('books.html', books_list=books_list)
+    return render_template('lab2/books.html', books_list=books_list)
 
 cars_list = [{'name': 'Audi RS 6', 'img':'audi_rs_6.jpeg', 'description': 'Audi RS 6 — спортивный автомобиль выпускаемый подразделением Audi Sport GmbH'},
             {'name': 'Audi RS 7', 'img':'audi_rs_7.webp', 'description': 'Audi RS 7 — спортивный пятидверный фастбэк класса Гран Туризмо выпускаемый подразделением Audi Sport GmbH на платформе Audi A7.'},
