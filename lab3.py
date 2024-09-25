@@ -37,3 +37,28 @@ def lab3_form1():
         errors['age'] = 'Заполните поле!'
     sex = request.args.get('sex')
     return render_template('lab3/form1.html', user=user, age=age, sex=sex, errors=errors)
+
+@lab3.route('/lab3/order')
+def lab3_order():
+    return render_template('lab3/order.html')
+
+
+for_order = {'cofee': 120, 'black-tea': 80, 'green-tea': 70}
+@lab3.route('/lab3/pay')
+def lab3_pay():
+    drink = request.args.get('drink')
+    price = 0
+    price += for_order[drink]
+
+    if request.args.get('milk') == 'on':
+        price += 30
+    if request.args.get('sugar') == 'on':
+        price += 10
+    resp = make_response(render_template('lab3/pay.html', price=price))
+    resp.set_cookie('last_order', str(price))
+    return resp
+
+@lab3.route('/lab3/success')
+def lab3_succes():
+    price = request.cookies.get('last_order')
+    return render_template('lab3/success.html', price=price)
