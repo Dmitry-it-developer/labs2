@@ -44,7 +44,7 @@ def lab2_claer_flowers():
 @lab2.route('/lab2/add_flower/<string:name>')
 def lab2_add_flower_name(name: str):
     if name.lower() not in [f['name'] for f in flower_list]:
-        flower_list.lab2end({'name': name.lower(), 'price': '0'})
+        flower_list.append({'name': name.lower(), 'price': '0'})
         return render_template('lab2/add_flower.html', name=flower_list[-1]['name'], len_flower=len(flower_list),
          flower_list=flower_list)
     return f'{name} уже есть в списке'
