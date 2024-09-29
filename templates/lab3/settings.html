@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   <h1>Cookies</h1>
+
+   <form>
+        <div>
+            <label for="color">Выберите цвет текста:</label>
+            <input type="color" id="color_t" name="color_t" value="{{ color_t or '' }}">
+            <br>
+            <label for="color">Выберите цвет фона:</label>
+            <input type="color" id="color_b" name="color_b" value="{{ color_b or '' }}">
+            <br>
+            <label for="int">Выберите размер шрифта:</label>
+            <input type="number" id="font_s" name="font_s" value="{{ font_s or 16 }}">
+        </div>
+        <div>
+            <button type="submit">OK</button>
+        </div>
+   </form>
+{% endblock %}

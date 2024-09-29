@@ -62,3 +62,20 @@ def lab3_pay():
 def lab3_succes():
     price = request.cookies.get('last_order')
     return render_template('lab3/success.html', price=price)
+
+@lab3.route('/lab3/settings/')
+def lab3_settings():
+    color_t = request.args.get('color_t')
+    color_b = request.args.get('color_b')
+    font_s = request.args.get('font_s')
+    if color_t:
+        resp = make_response(redirect('/lab3/settings'))
+        resp.set_cookie('color_t', color_t)
+        resp.set_cookie('color_b', color_b)
+        resp.set_cookie('font_s', font_s)
+        return resp
+    color_t = request.cookies.get('color_t')
+    color_b = request.cookies.get('color_b')
+    font_s = request.cookies.get('font_s')
+    resp = make_response(render_template('lab3/settings.html', color_t=color_t, color_b=color_b, font_s=font_s))
+    return resp
