@@ -24,6 +24,9 @@ def lab3_del_cookie():
     resp.delete_cookie('name')
     resp.delete_cookie('age')
     resp.delete_cookie('color')
+    resp.delete_cookie('color_t')
+    resp.delete_cookie('color_b')
+    resp.delete_cookie('font_s')
     return resp
 
 
