@@ -77,12 +77,12 @@ def author():
 
 @lab1.route('/lab1/oak')
 def oak():
-    path = url_for('static', filename='oak.jpg')
+    path = url_for('static', filename='lab1/oak.jpg')
 
     return f"""<!doctype html> 
         <html>
             <head>
-            <link rel="stylesheet" href="{url_for('static', filename='lab1.css')}">
+            <link rel="stylesheet" href="{url_for('static', filename='lab1/lab1.css')}">
             </head>
            <body>
                <h1>Дуб</h1>
@@ -231,6 +231,6 @@ def my():
                что постоянное информационно-техническое обеспечение нашей деятельности влечет за собой процесс внедрения и 
                модернизации форм воздействия. Не следует, однако, забывать о том, что начало повседневной работы по формированию 
                позиции в значительной степени обуславливает создание соответствующих условий активизации!<br>
-               <img src="{url_for('static', filename='oak.jpg')}">
+               <img src="{url_for('static', filename='lab1/oak.jpg')}">
             </body>
         </html>""", 200, {'Content-Language': 'ru-Ru', 'X-api-key': '312fdse2drf2csaDAaw', 'X-more': 'more information'}

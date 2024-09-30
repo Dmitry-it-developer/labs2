@@ -116,7 +116,7 @@ cars_list = [{'name': 'Audi RS 6', 'img':'audi_rs_6.jpeg', 'description': 'Audi 
 def lab2_cars():
     cars_text = ''
     for car in cars_list:
-        cars_text += f'<b>{car['name']}</b>.<br> {car['description']} <br> <img width="300px" src="{url_for('static', filename=car['img'])}"><br>'
+        cars_text += f'<b>{car['name']}</b>.<br> {car['description']} <br> <img width="300px" src="{url_for('static', filename=f'lab2/{car['img']}')}"><br>'
     html_content =  f"""<!doctype html> 
         <html>
             <head>
