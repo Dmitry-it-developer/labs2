@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+    <h1>Оформлен {{ age_type }} билет!</h1>
+
+    <div style="margin:20px; font-size:18px">Билет оформлен на  имя: {{ full_name }} <br>
+        Пунк выезда: {{ start }} <br>
+        Пунк назначения: {{ end }} <br>
+        Дата выезда: {{ date_travel }} <br>
+        Цена билета: {{ price }} руб.</div>
+
+{% endblock %}

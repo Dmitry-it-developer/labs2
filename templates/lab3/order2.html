@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+    <h1>Оформление билета</h1>
+
+    <form>
+        <label>Ваше ФИО:</label>
+        <div>
+            <input type="text" name="full_name" style="width:200px" value="{{ full_name or '' }}">
+            <span style="color:red"><b>{{ errors.full_name }}</b></span>
+        </div>
+        <br>
+        <label>Ваше возраст:</label>
+        <div>
+            <input type="number" name="age" style="width:50px" value="{{ age or '' }}">
+            <span style="color:red"><b>{{ errors.age }}</b></span>
+        </div>
+        <br>
+        <div>Выберите полку:</div>
+        <label>
+            <input type="radio" value="lower" name="place" checked>Нижняя
+        </label>
+        <label>
+            |<input type="radio" value="upper" name="place">Верхняя
+        </label>
+        <label>
+            |<input type="radio" value="lower_side" name="place">Нижняя боковая
+        </label>
+        <label>
+            |<input type="radio" value="upper_side" name="place">Верхняя боковая
+        </label>
+        <br><br>
+        <div>Дополнительные параметры: </div>
+
+        <label>
+            <input type="checkbox" name="clothes">Билет с бильем
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="bag">Присутсвует багаж
+        </label>
+        <br>
+        <label>
+            <input type="checkbox" name="insurance">Нужна страховка
+        </label>
+        <br><br>
+        <div>Параметры маршрута: </div>
+
+        <label>Пункт выезда:</label>
+        <div>
+            <input type="text" name="start" value="{{ start or '' }}">
+            <span style="color:red"><b>{{ errors.start }}</b></span>
+        </div>
+        <br>
+        <label>Пункт назначения:</label>
+        <div>
+            <input type="text" name="end" value="{{ end or '' }}">
+            <span style="color:red"><b>{{ errors.end }}</b></span>
+        </div>
+        <br>
+        <label>Дата поездки:</label>
+        <div>
+            <input type="date" name="date_travel" value="{{ date_travel or '' }}">
+            <span style="color:red"><b>{{ errors.date_travel }}</b></span>
+        </div>
+        <br>
+        <div>
+            <button type="submit">Отправить</button>
+        </div>
+    </form>
+{% endblock %}

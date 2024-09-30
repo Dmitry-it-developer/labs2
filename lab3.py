@@ -80,3 +80,49 @@ def lab3_settings():
     font_s = request.cookies.get('font_s')
     resp = make_response(render_template('lab3/settings.html', color_t=color_t, color_b=color_b, font_s=font_s))
     return resp
+
+@lab3.route('/lab3/order2/')
+def lab3_order2():
+    errors = {}
+    full_name = request.args.get('full_name')
+    age = request.args.get('age')
+    place = request.args.get('place')
+    clothes = request.args.get('clothes')
+    bag = request.args.get('bag')
+    insurance = request.args.get('insurance')
+    start = request.args.get('start')
+    end = request.args.get('end')
+    date_travel = request.args.get('date_travel')
+
+    for i in ['full_name', 'age', 'start', 'end', 'date_travel']:
+        if locals()[i] == '':
+            errors[i] = 'Заполните поле!'
+    if int(age) < 1 or int(age) > 120:
+        errors['age'] = 'Возраст должен быть от 1 до 120'
+
+    if len(errors) != 0:
+        resp = make_response(render_template('lab3/order2.html', full_name=full_name, age=age, start=start, 
+        end=end, date_travel=date_travel, errors=errors))
+    else:
+        price = make_price(age, place, clothes, bag,insurance)
+        age_type = 'детский' if int(age) < 18 else 'взрослый'
+        resp = make_response(render_template('lab3/ticket.html', full_name=full_name, start=start, end=end, 
+        date_travel=date_travel, age_type=age_type, price=price))
+
+    return resp
+
+def make_price(age:str, place:str, clothes:str, bag:str, insurance:str) -> int:
+    price = 0
+    if int(age) < 18:
+        price += 700
+    else:
+        price += 1000
+    if place in ['lower', 'lower_side']:
+        price += 100
+    if clothes == 'on':
+        price += 75
+    if bag == 'on':
+        price += 250
+    if insurance == 'on':
+        price += 150
+    return price
