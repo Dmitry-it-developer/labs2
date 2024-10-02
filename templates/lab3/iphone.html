@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 3{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+    <h1>Фильтр телефонов по цене</h1>
+    <form>
+        <label>Начальная цена:</label>
+        <div>
+            <input type="number" name="start_p" style="width:50px" value="{{ start_p or '100' }}">
+            <span style="color:red"><b>{{ errors.start_p }}</b></span>
+        </div>
+        <label>Конечная цена:</label>
+        <div>
+            <input type="number" name="end_p" style="width:50px" value="{{ end_p or '100' }}">
+            <span style="color:red"><b>{{ errors.end_p }}</b></span>
+        </div>
+        <br>
+        <div>
+            <button type="submit">Отфильтровать</button>
+        </div>
+        {% if phones_filter %}
+        <h2>Подходящие модели:</h2>
+        <ol type="1">
+            {% for p in phones_filter %}
+            <li>Модель: {{p.name}} | Цена : {{p.price}} $ | Цвет: {{p.color}}</li>
+            <br>
+            {% endfor %}
+        </ol>
+        {% endif %}
+    </form>
+
+{% endblock %}

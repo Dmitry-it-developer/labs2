@@ -100,15 +100,18 @@ def lab3_order2():
     for i in ['full_name', 'age', 'start', 'end', 'date_travel']:
         if locals()[i] == '':
             errors[i] = 'Заполните поле!'
-    if int(age) < 1 or int(age) > 120:
-        errors['age'] = 'Возраст должен быть от 1 до 120'
-
-    if len(errors) != 0:
+    if str(age) != 'None':
+        if int(age) < 1 or int(age) > 120:
+            errors['age'] = 'Возраст должен быть от 1 до 120'
+    if len(errors) != 0 or len(request.args) == 0:
         resp = make_response(render_template('lab3/order2.html', full_name=full_name, age=age, start=start, 
         end=end, date_travel=date_travel, errors=errors))
     else:
         price = make_price(age, place, clothes, bag,insurance)
-        age_type = 'детский' if int(age) < 18 else 'взрослый'
+        if str(age) != 'None':
+            age_type = 'детский' if int(age) < 18 else 'взрослый'
+        else:
+            age_type = 'взрослый'
         resp = make_response(render_template('lab3/ticket.html', full_name=full_name, start=start, end=end, 
         date_travel=date_travel, age_type=age_type, price=price))
 
@@ -116,8 +119,9 @@ def lab3_order2():
 
 def make_price(age:str, place:str, clothes:str, bag:str, insurance:str) -> int:
     price = 0
-    if int(age) < 18:
-        price += 700
+    if str(age) != 'None':
+        if int(age) < 18:
+            price += 700
     else:
         price += 1000
     if place in ['lower', 'lower_side']:
@@ -129,3 +133,53 @@ def make_price(age:str, place:str, clothes:str, bag:str, insurance:str) -> int:
     if insurance == 'on':
         price += 150
     return price
+
+phones = [{'name': 'Iphone 1', 'price': '100', 'color': 'Белый'},
+    {'name': 'Iphone 2', 'price': '200', 'color': 'Черный'},
+    {'name': 'Iphone 3', 'price': '300', 'color': 'Белый'},
+    {'name': 'Iphone 4', 'price': '400', 'color': 'Черный'},
+    {'name': 'Iphone 5', 'price': '500', 'color': 'Белый'},
+    {'name': 'Iphone 6', 'price': '600', 'color': 'Черный'},
+    {'name': 'Iphone 7', 'price': '700', 'color': 'Белый'},
+    {'name': 'Iphone 8', 'price': '800', 'color': 'Черный'},
+    {'name': 'Iphone 9', 'price': '900', 'color': 'Белый'},
+    {'name': 'Iphone 10', 'price': '1000', 'color': 'Черный'},
+    {'name': 'Iphone 11', 'price': '1100', 'color': 'Белый'},
+    {'name': 'Iphone 12', 'price': '1200', 'color': 'Черный'},
+    {'name': 'Iphone 13', 'price': '1300', 'color': 'Белый'},
+    {'name': 'Iphone 14', 'price': '1400', 'color': 'Черный'},
+    {'name': 'Iphone 15', 'price': '1500', 'color': 'Белый'},
+    {'name': 'Iphone 16', 'price': '1600', 'color': 'Черный'},
+    {'name': 'Iphone 17', 'price': '1700', 'color': 'Белый'},
+    {'name': 'Iphone 18', 'price': '1800', 'color': 'Черный'},
+    {'name': 'Iphone 19', 'price': '1900', 'color': 'Белый'},
+    {'name': 'Iphone 20', 'price': '2000', 'color': 'Черный'}]
+
+@lab3.route('/lab3/iphone')
+def lab3_iphone():
+    errors = {}
+    start_p = request.args.get('start_p')
+    end_p = request.args.get('end_p')
+    phones_filter = []
+    if len(request.args) > 0:
+        if start_p == '':
+            errors['start_p'] = 'Введите значени!'
+        elif int(start_p) < 0:
+            errors['start_p'] = 'Введите цену начиная от 0 руб.'
+
+        if  end_p == '':
+            errors['end_p'] = 'Введите значени!'
+        elif int(end_p) < int(start_p):
+            errors['end_p'] = 'Введите конечную цену больше начальной.'
+        if len(errors) == 0:
+            phones_filter = filter_phones(start_p, end_p)
+            print(phones_filter)
+    resp = make_response(render_template('lab3/iphone.html', start_p=start_p, end_p=end_p, errors=errors, phones_filter=phones_filter))
+    return resp
+
+def filter_phones(start_p:str, end_p:str) -> list:
+    result = []
+    for phone in phones:
+        if float(start_p) <= float(phone['price']) <= float(end_p):
+            result.append(phone)
+    return result
