@@ -76,3 +76,21 @@ def lab4_degree():
         return render_template('lab4/degree.html', x=x, y=y, error='Оба поля должны быть не равны 0!')
     result = int(x) ** int(y) 
     return render_template('lab4/degree.html', x=x, y=y, result=result)
+
+
+tree_count = 0
+
+@lab4.route('/lab4/tree', methods=['GET', 'POST'])
+def lab4_tree():
+    global tree_count
+    if request.method == 'GET':
+        return render_template('lab4/tree.html', tree_count=tree_count)
+    operation = request.form.get('operation')
+
+    if operation == 'plant':
+        tree_count += 1
+    elif tree_count > 0:
+        tree_count -= 1
+    else:
+        return render_template('lab4/tree.html', tree_count=tree_count, error='Невозможно срубить!')
+    return render_template('lab4/tree.html', tree_count=tree_count)

@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   <div>
+      Посажено деревьев: {{ tree_count }}
+      <br>
+      {% if error %}
+      <span style="color:red">{{error}}</span>
+      {% endif %}
+   </div>
+   <form method="post">
+      <button name="operation" value="plant">Посадить дерево</button>
+      <button name="operation" value="cut">Срубить дерево</button>
+   </form>
+{% endblock %}
