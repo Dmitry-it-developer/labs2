@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   {% if temp %}
+   <h1>Установлена температура: {{ temp }}°C <span style="color:blue">{{ temp_type }}</span></h1>
+   <a href="/lab4/fridge">Изменить температуру</a>
+   {% else %}
+   <h1>Установите температуру холодильника</h1>
+   <form method="post">
+      <input type="number" name="temp" id="temp" value="{{ value or '' }}">
+      <span style="color:red"><b>{{ error or ''}}</b></span>
+      <br><br>
+      <input type="submit" value="Установить">
+   </form>
+   {% endif %}
+{% endblock %}

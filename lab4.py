@@ -138,3 +138,23 @@ def lab4_logout():
     session.pop('name', None)
     return redirect('/lab4/login')
 
+@lab4.route('/lab4/fridge', methods=['GET', 'POST'])
+def lab4_fridge():
+    if request.method == 'GET':
+        return render_template('lab4/fridge.html')
+    temp = request.form.get('temp')
+    if temp == '':
+        return render_template('lab4/fridge.html', error='Температура не задана!')
+    temp = int(temp)
+    if temp < -12:
+        return render_template('lab4/fridge.html', error='Слишком низкая температура', value=temp)
+    if temp > -1:
+        return render_template('lab4/fridge.html', error='Слишком высокая температура', value=temp)
+    if -12 <= temp <= -9:
+        return render_template('lab4/fridge.html', temp=temp, temp_type='***')
+    if -8<= temp <= -5:
+        return render_template('lab4/fridge.html', temp=temp, temp_type='**')
+    if -4<= temp <= -1:
+        return render_template('lab4/fridge.html', temp=temp, temp_type='*')
+
+
