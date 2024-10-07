@@ -158,3 +158,44 @@ def lab4_fridge():
         return render_template('lab4/fridge.html', temp=temp, temp_type='*')
 
 
+grains = [
+        {'name': 'barley', 'price': 12345}, 
+        {'name': 'oats', 'price': 8522},
+        {'name': 'wheat', 'price': 8722},  
+        {'name': 'rye', 'price': 14111},
+        ]
+
+@lab4.route('/lab4/order', methods=['GET', 'POST'])
+def lab4_order():
+    if request.method == 'GET':
+        return render_template('lab4/order.html')
+
+    value = request.form.get('value')
+    grain_name = request.form.get('grain')
+    price = 0
+    sale = 0
+
+    if value == '':
+        return render_template('/lab4/order.html', error='Укажите значение!')
+
+    if int(value) <= 0:
+        return render_template('/lab4/order.html', error='Значение должно быть больше 0!', value=value)
+    if int(value) >= 500:
+        return render_template('/lab4/order.html', error='Такого объема сейчас нет!', value=value)
+
+
+    for grain in grains:
+        if grain['name'] == grain_name:
+            price = int(value) * grain['price']
+            grain_name = {'barley':'ячмень', 'oats': 'овес', 'wheat': 'пшеница', 'rye': 'рожь'}[grain_name]
+
+    if int(value) > 50:
+        sale = price * 0.1
+        price *= 0.9
+        return render_template('lab4/order.html', price=price, grain_name=grain_name, value=value, ordered=True, sale=sale)
+    return render_template('lab4/order.html', price=price, grain_name=grain_name, value=value, ordered=True)
+    
+
+
+
+

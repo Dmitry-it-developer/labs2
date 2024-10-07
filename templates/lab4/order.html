@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   {% if ordered %}
+   <h1>Заказ успешно сформирован</h1>
+   <div>
+      Вы заказали {{ grain_name }}.
+      <br>
+      Вес: {{ value }} т.
+      <br>
+      Сумма к оплате: {{ price }} руб.
+      <br>
+      {% if sale %}
+      За большой объем применена скидка 10% = {{ sale }} руб.
+      <br>
+      {% endif %}
+      <a href="/lab4/order">Назад</a>
+   </div>
+   {% else %}
+   <h1>Оформление заказа</h1>
+   <form method="post">
+      <label>
+         <input type="radio" name='grain' value="barley" checked>Ячмень
+      </label>
+      <br>
+      <label>
+         <input type="radio" name='grain' value="oats">Овес
+      </label>
+      <br>
+      <label>
+         <input type="radio" name='grain' value="wheat">Пшеница
+      </label>
+      <br>
+      <label>
+         <input type="radio" name='grain' value="rye">Рожь
+      </label>
+      <br>
+      Укажите количество в тоннах:
+      <input type="number" name="value" id="value" value="{{ value or '' }}" style="width: 50px;">
+      <span style="color:red"><b>{{ error or ''}}</b></span>
+      <br><br>
+      <input type="submit" value="Сформировать заказ">
+      <br>
+   </form>
+   {% endif %}
+{% endblock %}
