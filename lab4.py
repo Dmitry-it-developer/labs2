@@ -11,6 +11,7 @@ def lab4_main():
 def lab4_div_form():
     return render_template('lab4/div-form.html')
 
+
 @lab4.route('/lab4/div/', methods=['POST'])
 def lab4_div():
     x = request.form.get('x')
@@ -21,3 +22,57 @@ def lab4_div():
         return render_template('lab4/div.html', x=x, y=y, error='На ноль делить нельзя!')
     result = int(x) / int(y) 
     return render_template('lab4/div.html', x=x, y=y, result=result)
+
+@lab4.route('/lab4/sum-form/')
+def lab4_sum_form():
+    return render_template('lab4/sum-form.html')
+
+@lab4.route('/lab4/sum/', methods=['POST'])
+def lab4_sum():
+    x = request.form.get('x')
+    x = int(x) if x != '' else 0
+    y = request.form.get('y')
+    y = int(y) if y != '' else 0
+    result = x + y 
+    return render_template('lab4/sum.html', x=x, y=y, result=result)
+
+@lab4.route('/lab4/mult-form/')
+def lab4_mult_form():
+    return render_template('lab4/mult-form.html')
+
+@lab4.route('/lab4/mult/', methods=['POST'])
+def lab4_mult():
+    x = request.form.get('x')
+    x = int(x) if x != '' else 1
+    y = request.form.get('y')
+    y = int(y) if y != '' else 1
+    result = x * y 
+    return render_template('lab4/mult.html', x=x, y=y, result=result)
+
+@lab4.route('/lab4/sub-form/')
+def lab4_sub_form():
+    return render_template('lab4/sub-form.html')
+
+@lab4.route('/lab4/sub/', methods=['POST'])
+def lab4_sub():
+    x = request.form.get('x')
+    y = request.form.get('y')
+    if x == '' or y == '':
+        return render_template('lab4/sub.html', x=x, y=y, error='Оба поля должны быть заполнеными!')
+    result = int(x) - int(y)
+    return render_template('lab4/sub.html', x=x, y=y, result=result)
+
+@lab4.route('/lab4/degree-form/')
+def lab4_degeree_form():
+    return render_template('lab4/degree-form.html')
+
+@lab4.route('/lab4/degree/', methods=['POST'])
+def lab4_degree():
+    x = request.form.get('x')
+    y = request.form.get('y')
+    if x == '' or y == '':
+        return render_template('lab4/degree.html', x=x, y=y, error='Оба поля должны быть заполнеными!')
+    if x == '0' or y == '0':
+        return render_template('lab4/degree.html', x=x, y=y, error='Оба поля должны быть не равны 0!')
+    result = int(x) ** int(y) 
+    return render_template('lab4/degree.html', x=x, y=y, result=result)
