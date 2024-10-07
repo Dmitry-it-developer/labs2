@@ -13,7 +13,7 @@
       {% endif %}
    </div>
    <form method="post">
-      <button name="operation" value="plant">Посадить дерево</button>
-      <button name="operation" value="cut">Срубить дерево</button>
+      <button name="operation" value="plant" {{disabled_plant}}>Посадить дерево</button>
+      <button name="operation" value="cut" {{disabled_cut}}>Срубить дерево</button>
    </form>
 {% endblock %}

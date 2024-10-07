@@ -84,13 +84,13 @@ tree_count = 0
 def lab4_tree():
     global tree_count
     if request.method == 'GET':
-        return render_template('lab4/tree.html', tree_count=tree_count)
+        disabled_cut = 'disabled' if tree_count == 0 else ''
+        disabled_plant = 'disabled' if tree_count == 5 else ''
+        return render_template('lab4/tree.html', tree_count=tree_count, disabled_plant=disabled_plant, disabled_cut=disabled_cut)
     operation = request.form.get('operation')
 
     if operation == 'plant':
         tree_count += 1
-    elif tree_count > 0:
-        tree_count -= 1
     else:
-        return render_template('lab4/tree.html', tree_count=tree_count, error='Невозможно срубить!')
-    return render_template('lab4/tree.html', tree_count=tree_count)
+        tree_count -= 1
+    return redirect('/lab4/tree')
