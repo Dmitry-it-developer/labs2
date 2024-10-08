@@ -9,12 +9,12 @@
     <form>
         <label>Начальная цена:</label>
         <div>
-            <input type="number" name="start_p" style="width:50px" value="{{ start_p or '100' }}">
+            <input type="number" name="start_p" style="width:50px" value="{{ start_p or '' }}"><br>
             <span style="color:red"><b>{{ errors.start_p }}</b></span>
         </div>
         <label>Конечная цена:</label>
         <div>
-            <input type="number" name="end_p" style="width:50px" value="{{ end_p or '100' }}">
+            <input type="number" name="end_p" style="width:50px" value="{{ end_p or '' }}"><br>
             <span style="color:red"><b>{{ errors.end_p }}</b></span>
         </div>
         <br>

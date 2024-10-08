@@ -100,7 +100,7 @@ def lab3_order2():
     for i in ['full_name', 'age', 'start', 'end', 'date_travel']:
         if locals()[i] == '':
             errors[i] = 'Заполните поле!'
-    if str(age) != 'None':
+    if str(age) != 'None' and age != '':
         if int(age) < 1 or int(age) > 120:
             errors['age'] = 'Возраст должен быть от 1 до 120'
     if len(errors) != 0 or len(request.args) == 0:
@@ -162,18 +162,18 @@ def lab3_iphone():
     end_p = request.args.get('end_p')
     phones_filter = []
     if len(request.args) > 0:
-        if start_p == '':
-            errors['start_p'] = 'Введите значени!'
+        if start_p == '' or str(start_p) == 'None':
+            errors['start_p'] = 'Введите значение!'
         elif int(start_p) < 0:
             errors['start_p'] = 'Введите цену начиная от 0 руб.'
 
-        if  end_p == '':
-            errors['end_p'] = 'Введите значени!'
-        elif int(end_p) < int(start_p):
-            errors['end_p'] = 'Введите конечную цену больше начальной.'
-        if len(errors) == 0:
-            phones_filter = filter_phones(start_p, end_p)
-            print(phones_filter)
+        if  end_p == '' or str(end_p) == 'None':
+            errors['end_p'] = 'Введите значение!'
+        if not errors:
+            if int(end_p) < int(start_p):
+                errors['end_p'] = 'Введите конечную цену больше начальной.'
+            else:
+                phones_filter = filter_phones(start_p, end_p)
     resp = make_response(render_template('lab3/iphone.html', start_p=start_p, end_p=end_p, errors=errors, phones_filter=phones_filter))
     return resp
 

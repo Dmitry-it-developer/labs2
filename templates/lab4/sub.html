@@ -6,11 +6,17 @@
 {# Основной контент #}
 {% block main %}
 {% if error %}
-<span style="color:red">{{error}}</span>
+<div>
+    <span style="color:red">{{error}}</span>
+ </div>
 {% else %}
-<h1>Разность чисел</h1>
-{{x}} - {{y}} = {{result}}
+<div>
+    <h1>Разность чисел</h1>
+    {{x}} - {{y}} = {{result}}
+</div>
 {% endif %}
 <br>
-<a href="/lab4/sub-form">Назад</a>
+<div>
+    <a href="/lab4/sub-form">Назад</a>
+</div>
 {% endblock %}

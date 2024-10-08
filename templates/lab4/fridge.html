@@ -6,12 +6,14 @@
 {# Основной контент #}
 {% block main %}
    {% if temp %}
-   <h1>Установлена температура: {{ temp }}°C <span style="color:blue">{{ temp_type }}</span></h1>
-   <a href="/lab4/fridge">Изменить температуру</a>
+   <div>
+      <h1>Установлена температура: {{ temp }}°C <span style="color:blue">{{ temp_type }}</span></h1>
+      <a href="/lab4/fridge">Изменить температуру</a>
+   </div>
    {% else %}
    <h1>Установите температуру холодильника</h1>
    <form method="post">
-      <input type="number" name="temp" id="temp" value="{{ value or '' }}">
+      <input type="number" name="temp" id="temp" value="{{ value or '' }}"><br>
       <span style="color:red"><b>{{ error or ''}}</b></span>
       <br><br>
       <input type="submit" value="Установить">

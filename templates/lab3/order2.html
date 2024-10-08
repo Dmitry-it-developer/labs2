@@ -10,13 +10,13 @@
     <form>
         <label>Ваше ФИО:</label>
         <div>
-            <input type="text" name="full_name" style="width:200px" value="{{ full_name or '' }}">
+            <input type="text" name="full_name" style="width:200px" value="{{ full_name or '' }}"><br>
             <span style="color:red"><b>{{ errors.full_name }}</b></span>
         </div>
         <br>
         <label>Ваше возраст:</label>
         <div>
-            <input type="number" name="age" style="width:50px" value="{{ age or 0 }}">
+            <input type="number" name="age" style="width:50px" value="{{ age or 0 }}"><br>
             <span style="color:red"><b>{{ errors.age }}</b></span>
         </div>
         <br>
@@ -52,19 +52,19 @@
 
         <label>Пункт выезда:</label>
         <div>
-            <input type="text" name="start" value="{{ start or '' }}">
+            <input type="text" name="start" value="{{ start or '' }}"><br>
             <span style="color:red"><b>{{ errors.start }}</b></span>
         </div>
         <br>
         <label>Пункт назначения:</label>
         <div>
-            <input type="text" name="end" value="{{ end or '' }}">
+            <input type="text" name="end" value="{{ end or '' }}"><br>
             <span style="color:red"><b>{{ errors.end }}</b></span>
         </div>
         <br>
         <label>Дата поездки:</label>
         <div>
-            <input type="date" name="date_travel" value="{{ date_travel or '' }}">
+            <input type="date" name="date_travel" value="{{ date_travel or '' }}"><br>
             <span style="color:red"><b>{{ errors.date_travel }}</b></span>
         </div>
         <br>

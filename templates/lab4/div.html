@@ -6,11 +6,17 @@
 {# Основной контент #}
 {% block main %}
    {% if error %}
+   <div>
       <span style="color:red">{{error}}</span>
+   </div>
    {% else %}
+   <div>
       <h1>Деление чисел</h1>
       {{x}} / {{y}} = {{result}}
+   </div>
    {% endif %}
    <br>
-   <a href="/lab4/div-form">Назад</a>
+   <div>
+      <a href="/lab4/div-form">Назад</a>
+   </div>
 {% endblock %}
