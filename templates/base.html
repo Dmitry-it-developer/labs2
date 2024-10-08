@@ -26,11 +26,15 @@
 <body>
     <header>
         WEB-программирование, часть 2. {{ self.lab() }}. <a href="/">Главное меню</a>
+        <hr>
     </header>
     <main>
-        {% block main %} {% endblock %}
+        <div class="main_div">
+            {% block main %} {% endblock %}
+        </div>
     </main>
     <footer>
+        <hr>
         &copy; Кимосов Дмитрий, ФБИ-21, 3 курс, 2023
     </footer>
 </body>

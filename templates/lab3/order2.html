@@ -16,7 +16,7 @@
         <br>
         <label>Ваше возраст:</label>
         <div>
-            <input type="number" name="age" style="width:50px" value="{{ age or '' }}">
+            <input type="number" name="age" style="width:50px" value="{{ age or 0 }}">
             <span style="color:red"><b>{{ errors.age }}</b></span>
         </div>
         <br>

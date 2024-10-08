@@ -14,26 +14,7 @@ app.secret_key = 'secret'
 @app.route("/")
 @app.route('/index')
 def index():
-    return  f"""<!doctype html>
-        <html>
-            <head>
-            <title>НГТУ, ФБ, Лабораторные работы</title>
-            </head>
-           <body>
-           <header>
-                НГТУ, ФБ, WEB-программирование, часть 2. Список лабораторных
-           </header>
-           <main>
-                <p><a href='/lab1'>Лабораторная работа 1</a></p>
-                <p><a href='/lab2'>Лабораторная работа 2</a></p>
-                <p><a href='/lab3'>Лабораторная работа 3</a></p>
-                <p><a href='/lab4'>Лабораторная работа 4</a></p>
-            </main>
-            <footer>
-                Кимосов Дмитрий Владимирович ФБИ - 21 3 курс 2024 год
-            </footer>
-            </body>
-        </html>"""
+    return  render_template('lab.html')
 
 @app.errorhandler(404)
 def not_found(err):

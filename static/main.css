@@ -1,3 +1,54 @@
 body {
     color: #8a2be2;
 }
+main {
+
+    margin: auto;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+header, footer {
+    text-align:  center;
+}
+
+.main_div {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
+}
+button {
+    background-color: white;
+    color: #8a2be2;
+    border-radius: 10px;
+    padding: 5px;
+    border-color: #8a2be2;
+}
+button:disabled{
+    background-color:rgb(209, 209, 209) ;
+}
+button:active {
+    background-color: rgb(223, 223, 223);
+    color: #8a2be2;
+    border-radius: 10px;
+    padding: 5px;
+    border-color: #8a2be2;
+}
+button:hover{
+    cursor: pointer;
+}
+ol {
+    padding: 0px;
+}
+.main_div * {
+    margin-top: 5px;
+    text-align: center;
+}
+
+li {
+    list-style-position:inside;
+    margin-top: 5px;
+    text-align: center;
+    margin: auto;
+}
+

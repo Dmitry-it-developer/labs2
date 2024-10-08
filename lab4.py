@@ -126,13 +126,12 @@ def lab4_login():
         if login == user['login'] and password == user['password']:
             session['login'] = login
             session['name'] = user['name']
-            return redirect('/lab4/login')
-            return render_template('lab4/login.html', login=login, authorized=True)
+            return render_template('lab4/login.html', login=login, name=session['name'], authorized=True)
 
     return render_template('lab4/login.html', error='Неверный логин и/или пароль', login=login, password=password)
 
 
-@lab4.route('/lab4/logout', methods=['POST'])
+@lab4.route('/lab4/logout', methods=['POST', 'GET'])
 def lab4_logout():
     session.pop('login', None)
     session.pop('name', None)
@@ -196,6 +195,70 @@ def lab4_order():
     return render_template('lab4/order.html', price=price, grain_name=grain_name, value=value, ordered=True)
     
 
+@lab4.route('/lab4/register', methods=['GET', 'POST'])
+def lab4_register():
+    if session:
+        return render_template('lab4/register.html', authorized=True, name=session['name'])
+    if request.method == 'GET':
+        return render_template('lab4/register.html')
 
+    errors = {}
 
+    name = request.form.get('name')
+    sex = request.form.get('sex')
+    login = request.form.get('login')
+    password = request.form.get('password')
 
+    for param in ['name', 'login', 'password']:
+        if locals()[param] == '':
+            errors[param] = 'Введите значение!'
+    
+    for user in users:
+        if login == user['login']:
+            errors['login'] = 'Логин уже зарегестрирован!'
+    if errors:
+        return render_template('lab4/register.html', name=name, login=login, password=password, sex=sex, errors=errors)
+    else:
+        users.append({'login': login, 'password':password, 'name': name, 'sex': sex})
+        session['login'] = login
+        session['name'] = name
+        return render_template('lab4/register.html', authorized=True, name=name)
+
+@lab4.route('/lab4/logins', methods=['GET', 'POST'])
+def lab4_logins():
+    if session:
+        return render_template('lab4/logins.html', name=session['name'], users=users, authorized=True)
+    return render_template('/lab4/logins.html')
+
+@lab4.route('/lab4/delete', methods=['POST'])
+def lab4_delete():
+    login = session['login']
+    for user in users:
+        if user['login'] == login:
+            users.remove(user)
+    return redirect('/lab4/logout')
+
+@lab4.route('/lab4/change', methods=['GET', 'POST'])
+def lab4_change():
+    if request.method == 'GET':
+        return render_template('lab4/change.html', login=session['login'], name=session['name'])
+    
+    errors = {}
+
+    name = request.form.get('name')
+    password = request.form.get('password')
+    print(name, name=='')
+    if name == '':
+        errors['name'] = 'Значение не должно быть пустым'
+    if password == '':
+        errors['password'] = 'Значение не должно быть пустым'
+    print(errors)
+    if errors:
+        return render_template('lab4/change.html', errors=errors, login=session['login'], name=session['name'])
+    else:
+        for user in users:
+            if user['login'] == session['login']:
+                user['name'] = name
+                user['password'] = password
+                session['name'] = name
+                return render_template('lab4/change.html', changed=True)

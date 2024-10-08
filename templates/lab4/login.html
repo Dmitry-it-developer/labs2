@@ -7,6 +7,10 @@
 {% block main %}
    {% if authorized %}
       <h1>Добро пожаловать, {{ name }}!</h1>
+      <h2>Вы успешно вошли в свой аккаунт!</h2>
+      <div>
+         <a href="/lab4/logins">Список пользователей</a>
+      </div>
       <div>
          <form action="/lab4/logout" method="post">
          <button>Выход</button>
@@ -29,6 +33,7 @@
          <span style="color:red">{{error}}</span>
       </div>
       <br>
+      <a href="/lab4/register">Зарегестрироваться</a>
       <div>
          <button type="submit">Войти</button>
          <button type="reset">Отмена</button>

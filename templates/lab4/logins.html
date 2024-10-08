@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   {% if authorized %}
+      <h1>Добро пожаловать, {{ name }}!</h1>
+      <div>
+         Список пользователей:
+         <ul>
+            {% for u in users %}
+            <li>Имя: {{u.name}} | логин: {{u.login}} | пол: {{'Мужчина' if u.sex == 'male' else 'Женщина'}}</li>
+            {% endfor %}
+        </ul>
+      <div>
+         <a href="/lab4/change">Изменить данные</a>
+      </div>  
+      <div>
+            <form action="/lab4/delete" method="post">
+               <button>Удалить свой профиль</button>
+            </form>
+         </div>
+         </form>
+      </div>
+      </form>
+   </div>
+   {% else %}
+   <h1>Для просмотра списка пользователей войдите в свой аккаунт!</h1>
+   <div>
+      <a href="/lab4/login">Войти</a>
+   </div>
+   {% endif %}
+{% endblock %}

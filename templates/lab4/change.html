@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 4{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+   {% if changed %}
+      <h1>Вы успешно изменили данные!</h1>
+      <div>
+         <a href="/lab4/logins">Список пользователей</a>
+      </div>
+      <div>
+         <form action="/lab4/logout" method="post">
+         <button>Выход</button>
+         </form>
+      </div>
+   {% else %}
+   <h1>Изменение данных</h1>
+   <h2>Ваш логин: {{ login }}</h2>
+   <form method="post">
+      <div>
+         <label for="name">Имя:</label>
+         <input type="text" name="name" id="name" value="{{ name or ''}}"><br>
+         {% if errors%}<span style="color:red"><b>{{ errors.name }}</b></span> {% endif %}
+      </div>
+      <div>
+         <label for="password">Пароль:</label>
+         <input type="password" name="password" id="password" value=""><br>
+         {% if errors%}<span style="color:red"><b>{{ errors.password }}</b></span> {% endif %}
+      <div>
+      <div>
+         <button type="submit">Изменить</button>
+      </div>
+   </form>
+   {% endif %}
+{% endblock %}
