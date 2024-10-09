@@ -247,12 +247,12 @@ def lab4_change():
 
     name = request.form.get('name')
     password = request.form.get('password')
-    print(name, name=='')
+
     if name == '':
         errors['name'] = 'Значение не должно быть пустым'
     if password == '':
         errors['password'] = 'Значение не должно быть пустым'
-    print(errors)
+
     if errors:
         return render_template('lab4/change.html', errors=errors, login=session['login'], name=session['name'])
     else:
