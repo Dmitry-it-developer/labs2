@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 5{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+    <h1>База знаний</h1>
+    <div>Тема лабороторной работы - Базы данных</div>
+    <br>
+    <div>Список сделанных страниц:</div>
+    <ol>
+        <li><a href="/lab5/login">Список статей</a></li>
+        <li><a href="/lab5/register">Создать статью</a></li>
+        <li><a href="/lab5/list">Список статей</a></li>
+        <li><a href="/lab5/create">Создать статью</a></li>
+    </ol>
+{% endblock %}
