@@ -23,20 +23,15 @@ def lab5_registe():
             errors['password'] = 'Введите значение!'
         return render_template('lab5/register.html', errors=errors)
     
-    conn = psycopg2.connect(host='127.0.0.1', database='web', user='postgres', password='667')
-
-    cur = conn.cursor()
+    conn, cur = db_connect()
 
     cur.execute(f"SELECT login FROM users WHERE login='{login}';")
     if cur.fetchone():
-        cur.close()
-        conn.close()
+        db_close(conn, cur)
         return render_template('lab5/register.html', error='Такой пользователь уже суещствует')
 
     cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password}');")
-    conn.commit()
-    cur.close()
-    conn.close()
+    db_close(conn,cur)
     return render_template('lab5/success.html', login=login)
 
 @lab5.route('/lab5/login', methods=['GET', 'POST'])
@@ -55,27 +50,32 @@ def lab5_login():
             errors['password'] = 'Введите значение!'
         return render_template('lab5/login.html', errors=errors)
 
-    conn = psycopg2.connect(host='127.0.0.1', database='web', user='postgres', password='667')
-
-    cur = conn.cursor(cursor_factory=RealDictCursor)
+    conn, cur = db_connect()
 
     cur.execute(f"SELECT * FROM users WHERE login='{login}'")
     user = cur.fetchone()
 
     if not user:
-        cur.close()
-        conn.close()
+        db_close(conn, cur)
         return render_template('lab5/login.html', error='Пользователь не найден', login=login, password=password)
     
     if user['password'] != password:
-        cur.close()
-        conn.close()
+        db_close(conn, cur)
         return render_template('lab5/login.html', error='Пароль неверный',login=login)
 
     session['login'] = login
-    cur.close()
-    conn.close()
+    db_close(conn, cur)
     return render_template('lab5/login.html', login=login, authorized=True)
     
 
-    
+def db_connect():
+    conn = psycopg2.connect(host='127.0.0.1', database='web', user='postgres', password='667')
+
+    cur = conn.cursor(cursor_factory=RealDictCursor)
+
+    return  conn, cur
+
+def db_close():
+    conn.commit()
+    cur.close()
+    conn.close()
