@@ -90,6 +90,25 @@ def lab5_create():
 
     return redirect('/lab5')
 
+
+@lab5.route('/lab5/list')
+def lab5_list():
+    if not session:
+        return redirect('/lab5/login')
+    
+    conn, cur = db_connect()
+
+    cur.execute(f"SELECT * FROM users WHERE login='{session.get('login')}'")
+    user_id = cur.fetchone()['id']
+
+    cur.execute(f"SELECT * FROM articles WHERE user_id='{user_id}'")
+    articles = cur.fetchall()
+
+    db_close(conn, cur)
+
+    return render_template('/lab5/articles.html', articles=articles)
+
+
 def db_connect():
     conn = psycopg2.connect(host='127.0.0.1', database='web', user='postgres', password='667')
 
