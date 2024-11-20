@@ -112,17 +112,17 @@ cars_list = [{'name': 'Audi RS 6', 'img':'audi_rs_6.jpeg', 'description': 'Audi 
             {'name': 'Audi R8', 'img': 'audi_r8.webp', 'description': 'Audi R8 - среднемоторный полноприводный спортивный автомобиль, производимый немецким автопроизводителем Audi с 2007 года.'},
             {'name': 'Audi A6', 'img': 'audi_a6.webp', 'description': 'Audi A6 — семейство спортивных автомобилей бизнес-класса, выпускающихся под маркой Audi'}]
 
-@lab2.route('/lab2/cars/')
-def lab2_cars():
-    cars_text = ''
-    for car in cars_list:
-        cars_text += f'<b>{car['name']}</b>.<br> {car['description']} <br> <img width="300px" src="{url_for('static', filename=f'lab2/{car['img']}')}"><br>'
-    html_content =  f"""<!doctype html> 
-        <html>
-            <head>
-            </head>
-           <body>
-               {cars_text}
-            </body>
-        </html>"""
-    return html_content
+# @lab2.route('/lab2/cars/')
+# def lab2_cars():
+#     cars_text = ''
+#     for car in cars_list:
+#         cars_text += f'<b>{car['name']}</b>.<br> {car['description']} <br> <img width="300px" src="{url_for('static', filename=f'lab2/{car['img']}')}"><br>'
+#     html_content =  f"""<!doctype html> 
+#         <html>
+#             <head>
+#             </head>
+#            <body>
+#                {cars_text}
+#             </body>
+#         </html>"""
+#     return html_content
