@@ -68,7 +68,27 @@ def lab5_login():
     session['login'] = login
     db_close(conn, cur)
     return render_template('lab5/login.html', login=login, authorized=True)
+   
+@lab5.route('/lab5/create', methods=['GET', 'POST'])
+def lab5_create():
+    if not session:
+        return redirect('/lab5/login')
+    if request.method == 'GET':
+        return render_template('lab5/create.html')   
     
+    title = request.form.get('title')
+    article_text = request.form.get('article_text')
+
+    conn, cur = db_connect()
+
+    cur.execute(f"SELECT * FROM users WHERE login='{session.get('login')}'")
+    login_id = cur.fetchone()["id"]
+
+    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({login_id}, '{title}', '{article_text}');")
+    
+    db_close(conn, cur)
+
+    return redirect('/lab5')
 
 def db_connect():
     conn = psycopg2.connect(host='127.0.0.1', database='web', user='postgres', password='667')
