@@ -26,13 +26,13 @@ def lab5_registe():
     
     conn, cur = db_connect()
 
-    cur.execute(f"SELECT login FROM users WHERE login='{login}';")
+    cur.execute(f"SELECT login FROM users WHERE login=%s;", (login, ))
     if cur.fetchone():
         db_close(conn, cur)
         return render_template('lab5/register.html', error='Такой пользователь уже суещствует')
 
     password_hash = generate_password_hash(password)
-    cur.execute(f"INSERT INTO users (login, password) VALUES ('{login}', '{password_hash}');")
+    cur.execute(f"INSERT INTO users (login, password) VALUES (%s, %s);", (login, password_hash))
     db_close(conn,cur)
     return render_template('lab5/success.html', login=login)
 
@@ -54,7 +54,7 @@ def lab5_login():
 
     conn, cur = db_connect()
 
-    cur.execute(f"SELECT * FROM users WHERE login='{login}'")
+    cur.execute(f"SELECT * FROM users WHERE login=%s;", (login, ))
     user = cur.fetchone()
 
     if not user:
@@ -76,15 +76,16 @@ def lab5_create():
     if request.method == 'GET':
         return render_template('lab5/create.html')   
     
+    login = session['login']
     title = request.form.get('title')
     article_text = request.form.get('article_text')
 
     conn, cur = db_connect()
 
-    cur.execute(f"SELECT * FROM users WHERE login='{session.get('login')}'")
+    cur.execute(f"SELECT * FROM users WHERE login=%s;", (login, ))
     login_id = cur.fetchone()["id"]
 
-    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES ({login_id}, '{title}', '{article_text}');")
+    cur.execute(f"INSERT INTO articles(user_id, title, article_text) VALUES (%s, %s, %s);", (login_id, title, article_text))
     
     db_close(conn, cur)
 
