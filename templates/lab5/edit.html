@@ -5,17 +5,17 @@
 
 {# Основной контент #}
 {% block main %}
-   <h1>Создание статьи</h1>
+   <h1>Редактирование статьи</h1>
    <form method="post">
       <div>
          <label for="title">
             Название статьи:
-            <input type="text" name="title" id="title" value="{{ title or ''}}" maxlength="50"><br>
+            <input type="text" name="title" id="title" value="{{ article['title'] or ''}}" maxlength="50"><br>
          </label>
          {% if errors %}<span style="color:red"><b>{{ errors.title }}</b></span> {% endif %}
       </div>
       <div>
-         <textarea cols=50 name="article_text"></textarea><br>
+         <textarea cols=50 name="article_text">{{ article['article_text'] or '' }}</textarea><br>
          {% if errors %}<span style="color:red"><b>{{ errors.article_text }}</b></span> {% endif %}
       <div>
          <span style="color:red">{{error}}</span>
