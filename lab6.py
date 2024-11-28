@@ -52,6 +52,33 @@ def lab6_json_rpc_api():
                     'result': 'succes',
                     'id': id
                 }
+    elif data['method'] == 'cancellation':
+        office_number = data['params']
+        for office in offices:
+            if office['number'] == office_number:
+                if office['tenant'] == '':
+                    return {
+                        'jsonrpc': 2.0,
+                        'error': {
+                            'code': 3,
+                            'message': 'There is no rent'
+                        }
+                    }
+                elif office['tenant'] != login:
+                    return {
+                        'jsonrpc': 2.0,
+                        'error': {
+                            'code': 4,
+                            'message': "Someone else's rent"
+                        }
+                    }
+                else:
+                    office['tenant'] = ''
+                    return {
+                    'jsonrpc': 2.0,
+                    'result': 'succes',
+                    'id': id
+                }
     else:
         return {
             'jsonrpc': 2.0,
