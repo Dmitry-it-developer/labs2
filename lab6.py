@@ -13,19 +13,27 @@ def lab6_main():
 offices = []
 
 for i in range(1,11):
-    offices.append({'number':i, 'tenant':""})
+    offices.append({'number':i, 'tenant':"", 'price': i*100})
 
 @lab6.route('/lab6/json-rpc-api/', methods=['POST'])
 def lab6_json_rpc_api():
     data = request.json
     id = data['id']
+    login = session.get('login')
     if data['method'] == 'info':
+        price = 0
+        for office in offices:
+            if login:
+                if office['tenant'] == login:
+                    price += office['price']
+            else:
+                price = 0
         return {
             'jsonrpc': 2.0,
             'result': offices,
+            'price': price,
             'id': id
         }
-    login = session.get('login')
     if not login:
         return {
             'jsonrpc': 2.0,
