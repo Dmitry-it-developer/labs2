@@ -52,3 +52,10 @@ def lab7_film(id):
     if id > len(films) - 1:
         return 'Фильм не найден!', 404
     return films[id]
+
+@lab7.route('/lab7/rest-api/films/<int:id>', methods=['DELETE'])
+def lab7_def_film(id):
+    if id > len(films) - 1:
+        return 'Фильм не найден!', 404
+    del films[id]
+    return '', 204
