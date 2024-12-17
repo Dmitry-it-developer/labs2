@@ -43,9 +43,15 @@ films = [
     }
 ]
 
-@lab7.route('/lab7/rest-api/films/', methods=['GET', 'POST'])
+@lab7.route('/lab7/rest-api/films/', methods=['GET'])
 def lab7_films():
     return films
+
+@lab7.route('/lab7/rest-api/films/', methods=['POST'])
+def lab7_add_film():
+    new_film = request.get_json()
+    films.append(new_film)
+    return str(len(films) - 1)
 
 @lab7.route('/lab7/rest-api/films/<int:id>', methods=['GET'])
 def lab7_film(id):
