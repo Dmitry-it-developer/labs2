@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, render_template, request, make_response, session, current_app
+from flask import Blueprint, redirect, url_for, render_template, request, make_response, session, current_app, jsonify
 import psycopg2
 from psycopg2.extras import RealDictCursor
 from werkzeug.security import check_password_hash, generate_password_hash
@@ -45,7 +45,7 @@ films = [
 
 @lab7.route('/lab7/rest-api/films/', methods=['GET'])
 def lab7_films():
-    return films
+    return jsonify(films)
 
 @lab7.route('/lab7/rest-api/films/', methods=['POST'])
 def lab7_add_film():
