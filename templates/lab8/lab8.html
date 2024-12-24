@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{# Номер лабороторной работы: #}
+{% block lab %}Лабораторная работа 8{% endblock %}
+
+{# Основной контент #}
+{% block main %}
+    <h1>Здравствуйте, {{ name or 'Anonymous!'}}!</h1>
+    <br>
+    <div>Список сделанных страниц:</div>
+    <ol>
+        <li><a href="/lab8/login">Вход</a></li>
+        <li><a href="/lab8/register">Регистрация</a></li>
+        <li><a href="/lab8/articles">Спсиок статей</a></li>
+        <li><a href="/lab8/create">Создать статью</a></li>
+    </ol>
+{% endblock %}
